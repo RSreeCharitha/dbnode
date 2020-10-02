@@ -3,9 +3,12 @@ const mysql = require('mysql');
 const express = require('express');
 const bp = require('body-parser');
 var app = express();
+
 //console.log(faker.internet.email());
 app.set("view engine", "ejs");
 app.use(bp.urlencoded({extended: true}))
+app.use(express.static(__dirname+'/public'));
+
 var connection = mysql.createConnection({
   host     : 'localhost',
   port     : 3309,

@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join our Newsletter!</title>
+    <link rel="stylesheet" href="/app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Join our newsletter and we will send you daily updates about cryptocurrencies.</h2>
-    <p><strong><%=num%></strong> people have joined us already!</p>
+    <div class="flex-container">
+        <h1>Join our newsletter and we will send you daily updates about cryptocurrencies.</h1>
+    <p><strong><%=num%></strong> <strong> people have joined us already!</strong></p>
 
     <form method="post" action='/thankyou'>
-        <label for=""><input type="text" name="fname" placeholder="First Name" required></label> <br>
-        <label for=""><input type="text" name="lname" placeholder="Last name(optional)"></label> <br>
-        <label for=""><input type="email" name="email" name="" id="" placeholder="Email" required></label><br>
+        <label for=""><input type="text" class="form" name="fname" placeholder="First Name" required></label> <br>
+        <label for=""><input type="text" class="form" name="lname" placeholder="Last name(optional)"></label> <br>
+        <label for=""><input type="email" class="form" name="email" name="" id="" placeholder="Email" required></label><br> <br>
         <button>Join!</button>
     </form>
+    </div>
 
 </body>
 </html>
