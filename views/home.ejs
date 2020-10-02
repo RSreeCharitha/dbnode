@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join our Newsletter!</title>
+</head>
+<body>
+    <h2>Join our newsletter and we will send you daily updates about cryptocurrencies.</h2>
+    <p><strong><%=num%></strong> people have joined us already!</p>
+
+    <form method="post" action='/thankyou'>
+        <label for=""><input type="text" name="fname" placeholder="First Name" required></label> <br>
+        <label for=""><input type="text" name="lname" placeholder="Last name(optional)"></label> <br>
+        <label for=""><input type="email" name="email" name="" id="" placeholder="Email" required></label><br>
+        <button>Join!</button>
+    </form>
+
+</body>
+</html>

@@ -1,8 +1,11 @@
-var faker = require('faker')
-var mysql      = require('mysql');
-var express = require('express');
+//const faker = require('faker')
+const mysql = require('mysql');
+const express = require('express');
+const bp = require('body-parser');
 var app = express();
 //console.log(faker.internet.email());
+app.set("view engine", "ejs");
+app.use(bp.urlencoded({extended: true}))
 var connection = mysql.createConnection({
   host     : 'localhost',
   port     : 3309,
@@ -10,17 +13,38 @@ var connection = mysql.createConnection({
   password : 'dbnode',
   database : 'newsletter'
 });
-
+//connection.connect();
+var q = 'select count(*) as count from users';
+var count=0;
 app.get('/',function(req,res){
-  res.sendFile(__dirname+'/content/index.html')
-})
+  //res.sendFile(__dirname+'/content/index.html')
+    connection.query(q, function (error, results, fields) {
+      if (error) throw error;
+      count = results[0].count;
+      //console.log('The solution is: ', results);
+      //res.send(count + ' people have joined us already!');
+      res.render('home',{num: count})
+  });
+});
+
+app.post('/thankyou',function(req,res){
+      console.log(req.body);
+      var user = {
+        email: req.body.email,
+        fname: req.body.fname,
+        lname: req.body.lname
+      };
+      var q = "insert into users set ?"
+      connection.query(q, user, function (error, results, fields) {
+        if (error) throw error;
+        console.log(results);      
+        res.redirect('/');
+});
+});
 
 app.listen(8080, function(){
   console.log('App listening on port 8080');
 })
-
- 
-connection.connect();
 //var q = 'SELECT curtime() as time, curdate() as date, now() as now'
 {
 /*Insertin into table ---------------------------------
@@ -53,7 +77,4 @@ connection.query(q, [data], function (error, results, fields) {
 --------------------------------------------------------------
 */
 }
-
-
-connection.end();
-
+//connection.end();
